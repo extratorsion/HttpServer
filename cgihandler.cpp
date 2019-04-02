@@ -10,8 +10,8 @@ String CgiHandler::getCgiProgrmaName(const String& str) {
     String name;
     if (str.startswith("/")) {
         name = ".";
-        name += str; }
-    else {
+        name += str;  
+    } else {
         name += "./";
         name += str;
     }
