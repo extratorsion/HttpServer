@@ -7,11 +7,19 @@ HashSet<String> CgiHandler::cgiMap = {
 String CgiHandler::getCgiProgrmaName(const String& str) {
     String name;
     if (str.startswith("/")) {
+<<<<<<< HEAD:source/cgihandler.cpp
         name = CGIPROGRAMS_LOCATION + str;
 	} else {
         name = CGIPROGRAMS_LOCATION;
 		name += "/";
 		name += str;
+=======
+        name = ".";
+        name += str;  
+    } else {
+        name += "./";
+        name += str;
+>>>>>>> 3f9a8c371ef7d65afa9b6a383c803ccffd88afb4:cgihandler.cpp
     }
     return name;
 }
