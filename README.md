@@ -26,3 +26,6 @@
 
 ### mstring.h
 	字符串处理类，继承自std::string类
+
+### error.h
+	错误处理类
