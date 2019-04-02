@@ -181,6 +181,5 @@ int main() {
     } catch (...) {
         cerr << "Error " << endl;
     }
-
     return 0;
 }

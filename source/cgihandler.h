@@ -8,19 +8,7 @@ class CgiHandler
 public:
     static HashSet<String> cgiMap;
 
-    static void loadCgiPrograms(const char* file=CGIPROGRAMS_MAPFILE) {
-        std::fstream ifs(file, ios::in);
-        if (not ifs.is_open())
-            return;
-
-         if (cgiMap.size())
-            cgiMap.clear();
-
-        String programName;
-        while (not ifs.eof()) {
-            ifs >> programName;
-        }
-    }
+    static void loadCgiPrograms(const char* file=CGIPROGRAMS_MAPFILE);
 
 public:
     static bool isCgi(const String& name);

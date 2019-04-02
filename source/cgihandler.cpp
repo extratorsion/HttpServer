@@ -2,18 +2,16 @@
 #include <sys/wait.h>
 
 HashSet<String> CgiHandler::cgiMap = {
-     "add",
-     "multiply"
 };
 
 String CgiHandler::getCgiProgrmaName(const String& str) {
     String name;
     if (str.startswith("/")) {
-        name = ".";
-        name += str; }
-    else {
-        name += "./";
-        name += str;
+        name = CGIPROGRAMS_LOCATION + str;
+	} else {
+        name = CGIPROGRAMS_LOCATION;
+		name += "/";
+		name += str;
     }
     return name;
 }
@@ -74,3 +72,24 @@ String CgiHandler::processCgi(const String& cgiName, const String& inputArgs, ch
 bool CgiHandler::isCgi(const String& name) {
     return cgiMap.count(name) != 0;
 }
+
+void CgiHandler::loadCgiPrograms(const char* file) {
+	std::fstream ifs(file, ios::in);
+	if (not ifs.is_open()) {
+		cerr << "Error at loadCgiPrograms: file do not existence" << endl;
+		return;
+	}
+
+	if (cgiMap.size())
+		cgiMap.clear();
+
+	String programName;
+	while (not ifs.eof()) {
+		ifs >> programName;
+		cgiMap.insert(programName);
+	}
+
+	for (auto & name: cgiMap)
+		cout << "load " << name << endl;
+}
+

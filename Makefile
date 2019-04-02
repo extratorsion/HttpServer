@@ -1,9 +1,8 @@
-CFLAG=-pthread -std=c++1z
+server: source/server
+	$(shell mv source/server ./)
 
-server: server.cpp cgihandler.cpp request.cpp response.cpp threadpool.cpp mstring.cpp
-	g++ -o $@ ${CFLAG} $^
+source/server:  
+	make -C source
 
-%: %.cpp
-	g++ -o $@ ${CFLAG} $<
-
-
+clean:
+	rm server
